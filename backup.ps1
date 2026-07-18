@@ -1,12 +1,12 @@
 <#
 .SYNOPSIS
-  Streams a remote tar.gz of /home/openclaw over SSH to D:\Backups.
+  Streams a remote tar.gz of /home/openclaw over SSH to C:\Backups.
 
 .DESCRIPTION
   Connects to 194.156.117.210 via OpenSSH and writes:
-    D:\Backups\server_<yyyy-MM-dd>.tar.gz
+    C:\Backups\server_<yyyy-MM-dd>.tar.gz
 
-  Intended path on the PC: D:\backup.ps1
+  Intended path on the PC: C:\backup.ps1
   Requires OpenSSH Client and key-based (non-interactive) SSH auth for scheduled runs.
 
 .PARAMETER SshUser
@@ -19,14 +19,14 @@
   Directory to archive on the server (default: /home/openclaw).
 
 .PARAMETER BackupRoot
-  Local folder for archives (default: D:\Backups).
+  Local folder for archives (default: C:\Backups).
 #>
 [CmdletBinding()]
 param(
     [string]$SshUser = "root",
     [string]$SshHost = "194.156.117.210",
     [string]$RemotePath = "/home/openclaw",
-    [string]$BackupRoot = "D:\Backups"
+    [string]$BackupRoot = "C:\Backups"
 )
 
 $ErrorActionPreference = "Stop"

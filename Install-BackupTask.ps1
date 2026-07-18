@@ -1,12 +1,12 @@
 <#
 .SYNOPSIS
-  Installs D:\backup.ps1 and registers a weekly Sunday 03:00 Scheduled Task.
+  Installs C:\backup.ps1 and registers a weekly Sunday 03:00 Scheduled Task.
 
 .DESCRIPTION
-  Run once elevated (Administrator) on the Windows PC that has drive D:.
+  Run once elevated (Administrator) on the Windows PC.
 
-  Copies this folder's backup.ps1 to D:\backup.ps1 (or uses -SourceScript),
-  ensures D:\Backups exists, and registers task "OpenClaw Server Backup".
+  Copies this folder's backup.ps1 to C:\backup.ps1 (or uses -SourceScript),
+  ensures C:\Backups exists, and registers task "OpenClaw Server Backup".
 
 .PARAMETER SourceScript
   Path to backup.ps1 to install (default: backup.ps1 next to this script).
@@ -22,8 +22,8 @@ param(
     [string]$SourceScript = (Join-Path $PSScriptRoot "backup.ps1"),
     [string]$TaskName = "OpenClaw Server Backup",
     [string]$SshUser = "root",
-    [string]$InstallPath = "D:\backup.ps1",
-    [string]$BackupRoot = "D:\Backups"
+    [string]$InstallPath = "C:\backup.ps1",
+    [string]$BackupRoot = "C:\Backups"
 )
 
 $ErrorActionPreference = "Stop"
@@ -76,7 +76,7 @@ Register-ScheduledTask `
     -Trigger $trigger `
     -Settings $settings `
     -Principal $taskPrincipal `
-    -Description "Weekly SSH stream backup of /home/openclaw from 194.156.117.210 to D:\Backups" `
+    -Description "Weekly SSH stream backup of /home/openclaw from 194.156.117.210 to C:\Backups" `
     -Force | Out-Null
 
 Write-Host "Scheduled task registered: '$TaskName'"

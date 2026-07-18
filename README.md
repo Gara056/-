@@ -1,13 +1,13 @@
 # OpenClaw remote backup (Windows)
 
-PowerShell scripts that stream `/home/openclaw` from `194.156.117.210` over SSH into `D:\Backups\server_<date>.tar.gz` and schedule a weekly run.
+PowerShell scripts that stream `/home/openclaw` from `194.156.117.210` over SSH into `C:\Backups\server_<date>.tar.gz` and schedule a weekly run.
 
 ## Files
 
 | File | Purpose |
 |------|---------|
-| `backup.ps1` | Backup script (install to `D:\backup.ps1`) |
-| `Install-BackupTask.ps1` | Copies script to `D:\` and registers Task Scheduler |
+| `backup.ps1` | Backup script (install to `C:\backup.ps1`) |
+| `Install-BackupTask.ps1` | Copies script to `C:\` and registers Task Scheduler |
 
 ## One-time setup (on the Windows PC)
 
@@ -33,14 +33,14 @@ Optional: different SSH user:
 
 ## What gets created
 
-- `D:\backup.ps1`
-- `D:\Backups\` (archives + logs)
+- `C:\backup.ps1`
+- `C:\Backups\` (archives + logs)
 - Scheduled Task **OpenClaw Server Backup** — every Sunday at **03:00**
 
 ## Manual test
 
 ```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File D:\backup.ps1
+powershell -NoProfile -ExecutionPolicy Bypass -File C:\backup.ps1
 ```
 
-Archive path: `D:\Backups\server_yyyy-MM-dd.tar.gz`
+Archive path: `C:\Backups\server_yyyy-MM-dd.tar.gz`
