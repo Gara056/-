@@ -1,3 +1,17 @@
+# Рабочие материалы
+
+## Меню и КБЖУ для нутрициолога Юлии
+
+Пакет ТЗ и визуальный эталон PDF:
+
+- [`docs/yulia-racion-studio/README.md`](docs/yulia-racion-studio/README.md)
+- ТЗ: [`docs/yulia-racion-studio/TZ-racion-studio.md`](docs/yulia-racion-studio/TZ-racion-studio.md)
+- Эталон меню: [`docs/yulia-racion-studio/preview-menu.html`](docs/yulia-racion-studio/preview-menu.html)
+
+Разбор анкеты практики: [`razbor-ankety-boyarkova-yuliya.md`](razbor-ankety-boyarkova-yuliya.md)
+
+---
+
 # OpenClaw remote backup (Windows)
 
 PowerShell scripts that stream `/home/openclaw` from `194.156.117.210` over SSH into `D:\Backups\server_<date>.tar.gz` and schedule a weekly run.
