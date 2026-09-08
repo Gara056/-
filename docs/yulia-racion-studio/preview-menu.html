@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<title>Эталон PDF — меню на неделю · Racion Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --paper: #f6f1e8;
+    --card: #fffcf7;
+    --ink: #1f1b16;
+    --muted: #6b645b;
+    --sage: #5e7a68;
+    --sage-dark: #3f5648;
+    --sand: #d9c7b0;
+    --line: #e7dccb;
+    --terra: #b56a4a;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #cfc6b8; }
+  body {
+    font-family: Manrope, "Segoe UI", sans-serif;
+    color: var(--ink);
+    font-size: 11pt;
+    line-height: 1.45;
+  }
+  .sheet {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 12px auto;
+    background: var(--paper);
+    padding: 16mm 16mm 18mm;
+    position: relative;
+    box-shadow: 0 12px 40px rgba(31, 27, 22, 0.12);
+  }
+  .sheet + .sheet { page-break-before: always; }
+  .running {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 8pt;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-bottom: 1px solid var(--sand);
+    padding-bottom: 8px;
+    margin-bottom: 18px;
+  }
+  .pg {
+    position: absolute;
+    bottom: 10mm;
+    left: 16mm;
+    right: 16mm;
+    display: flex;
+    justify-content: space-between;
+    font-size: 8pt;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+  }
+  h1, h2, h3 { font-family: Fraunces, Georgia, serif; font-weight: 500; margin: 0; color: var(--sage-dark); }
+  .eyebrow {
+    font-size: 8.5pt;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 8px;
+  }
+  .cover-mark {
+    width: 36px; height: 3px; background: var(--terra); margin: 18px 0 22px;
+  }
+  .cover h1 { font-size: 34pt; line-height: 1.12; color: var(--ink); max-width: 90%; }
+  .cover .lede { font-size: 12.5pt; color: var(--muted); max-width: 78%; margin-top: 14px; }
+  .meta-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+    margin-top: 36px;
+  }
+  .meta {
+    border-top: 1px solid var(--sand);
+    padding-top: 10px;
+  }
+  .meta b { display: block; font-size: 8pt; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 4px; }
+  .hero-band {
+    margin-top: 40px;
+    background: var(--sage-dark);
+    color: #f6f1e8;
+    padding: 22px 24px;
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 20px;
+  }
+  .hero-band h2 { color: #f6f1e8; font-size: 16pt; }
+  .hero-band p { margin: 8px 0 0; font-size: 10pt; opacity: 0.88; }
+  .chips { display: flex; gap: 8px; flex-wrap: wrap; align-content: start; }
+  .chip {
+    background: rgba(246, 241, 232, 0.1);
+    border: 1px solid rgba(246, 241, 232, 0.28);
+    padding: 8px 10px;
+    min-width: 72px;
+  }
+  .chip span { display: block; font-size: 7.5pt; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.7; }
+  .chip strong { font-size: 14pt; font-variant-numeric: tabular-nums; }
+  .rules { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 18px; margin-top: 8px; }
+  .rule { display: flex; gap: 10px; align-items: flex-start; }
+  .num {
+    flex: 0 0 22px; height: 22px; border-radius: 50%;
+    border: 1px solid var(--sage); color: var(--sage-dark);
+    font-size: 9pt; display: flex; align-items: center; justify-content: center;
+    margin-top: 1px;
+  }
+  table.week {
+    width: 100%; border-collapse: collapse; font-size: 8.6pt;
+  }
+  table.week th {
+    text-align: left; font-weight: 600; font-size: 7.5pt;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted);
+    padding: 0 8px 8px; border-bottom: 1px solid var(--sand);
+  }
+  table.week td {
+    vertical-align: top; padding: 9px 8px; border-bottom: 1px solid var(--line);
+    width: 16.6%;
+  }
+  table.week .day { font-family: Fraunces, serif; font-size: 11pt; color: var(--sage-dark); display: block; margin-bottom: 2px; }
+  table.week .kcal { color: var(--muted); font-size: 8pt; }
+  table.week .dish { margin: 0 0 6px; }
+  table.week .slot { font-size: 7pt; letter-spacing: 0.1em; text-transform: uppercase; color: var(--sage); }
+  .day-grid { display: grid; gap: 10px; }
+  .slot-card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    padding: 12px 14px;
+    display: grid;
+    grid-template-columns: 92px 1fr auto;
+    gap: 14px;
+    align-items: center;
+  }
+  .ph {
+    width: 92px; height: 72px; background: linear-gradient(160deg, #d7e0d6, #cfc1ae);
+    display: flex; align-items: flex-end; padding: 8px;
+    font-size: 7.5pt; letter-spacing: 0.12em; text-transform: uppercase; color: var(--sage-dark);
+  }
+  .slot-card h3 { font-size: 14pt; color: var(--ink); }
+  .slot-card .who { font-size: 8pt; letter-spacing: 0.14em; text-transform: uppercase; color: var(--sage); margin-bottom: 4px; }
+  .macros {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; min-width: 210px;
+  }
+  .m {
+    text-align: right;
+  }
+  .m b { display: block; font-size: 12pt; font-variant-numeric: tabular-nums; }
+  .m span { font-size: 7pt; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .recipe-head { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 18px; margin-bottom: 16px; }
+  .photo {
+    height: 168px;
+    background:
+      linear-gradient(180deg, rgba(31,27,22,0.05), rgba(31,27,22,0.22)),
+      linear-gradient(120deg, #c5d1c4 0%, #b08968 55%, #7f8f7c 100%);
+    display: flex; align-items: flex-end; padding: 14px;
+    color: #fffcf7; font-size: 8.5pt; letter-spacing: 0.16em; text-transform: uppercase;
+  }
+  .kbju-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 14px 0 18px; }
+  .kbju {
+    background: var(--card); border: 1px solid var(--line); padding: 10px 12px;
+  }
+  .kbju span { display: block; font-size: 7.5pt; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+  .kbju b { font-size: 16pt; font-variant-numeric: tabular-nums; color: var(--sage-dark); }
+  .two { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 22px; }
+  ul.ing { margin: 0; padding: 0; list-style: none; }
+  ul.ing li {
+    display: flex; justify-content: space-between; gap: 12px;
+    padding: 6px 0; border-bottom: 1px solid var(--line); font-size: 10pt;
+  }
+  ol.steps { margin: 0; padding: 0; list-style: none; counter-reset: st; }
+  ol.steps li {
+    counter-increment: st;
+    display: grid; grid-template-columns: 28px 1fr;
+    gap: 10px; margin-bottom: 10px;
+  }
+  ol.steps li::before {
+    content: counter(st);
+    width: 26px; height: 26px; border-radius: 50%;
+    background: var(--sage); color: #f6f1e8;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10pt; font-weight: 600;
+  }
+  .note {
+    margin-top: 16px; padding: 14px 16px;
+    border-left: 3px solid var(--sage);
+    background: rgba(94, 122, 104, 0.08);
+    font-size: 10pt;
+  }
+  .shop { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 28px; }
+  .shop h3 { font-size: 13pt; margin: 8px 0 6px; }
+  .shop ul { margin: 0; padding: 0; list-style: none; }
+  .shop li { padding: 5px 0; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; }
+  .fine { font-size: 8.5pt; color: var(--muted); margin-top: 16px; }
+  @media print {
+    body { background: white; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .sheet { margin: 0; box-shadow: none; width: auto; min-height: 297mm; }
+    .sheet + .sheet { page-break-before: always; }
+  }
+  @page { size: A4; margin: 0; }
+</style>
+</head>
+<body>
+
+<section class="sheet cover">
+  <div class="running"><span>Юлия Бояркова · нутрициолог</span><span>Персональное меню</span></div>
+  <p class="eyebrow">7 дней · снижение веса · без рыбы</p>
+  <h1>Меню для Анны<br />8–14 сентября</h1>
+  <div class="cover-mark"></div>
+  <p class="lede">Спокойный рацион без жёстких запретов: знакомые продукты, понятные шаги, КБЖУ на 100 г готового блюда. Готовьте в том темпе, в котором живёте.</p>
+  <div class="meta-row">
+    <div class="meta"><b>Калорийность дня</b>~1650 ккал</div>
+    <div class="meta"><b>Белок</b>от 95 г / день</div>
+    <div class="meta"><b>Приёмы пищи</b>завтрак · обед · перекус · ужин</div>
+  </div>
+  <div class="hero-band">
+    <div>
+      <h2>Как пользоваться меню</h2>
+      <p>Вес в рецептах — на готовую порцию. Если готовите на двоих, умножьте закупки, КБЖУ на 100 г не изменится.</p>
+    </div>
+    <div class="chips">
+      <div class="chip"><span>цель</span><strong>− вес</strong></div>
+      <div class="chip"><span>ккал</span><strong>1650</strong></div>
+      <div class="chip"><span>Б / Ж / У</span><strong>110/45/140</strong></div>
+    </div>
+  </div>
+  <div class="pg"><span>Справочный расчёт по таблицам состава продуктов</span><span>01</span></div>
+</section>
+
+<section class="sheet">
+  <div class="running"><span>Юлия Бояркова · нутрициолог</span><span>Неделя с высоты</span></div>
+  <p class="eyebrow">Сетка</p>
+  <h2 style="font-size:22pt;margin-bottom:16px;color:#1f1b16;">Семь дней, четыре опоры</h2>
+  <table class="week">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Завтрак</th>
+        <th>Обед</th>
+        <th>Перекус</th>
+        <th>Ужин</th>
+        <th>День</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="day">Пн</span><span class="kcal">8 сен</span></td>
+        <td class="dish"><span class="slot">каша</span><br>Творожная рисовая</td>
+        <td class="dish"><span class="slot">суп</span><br>Чечевица с овощами</td>
+        <td class="dish"><span class="slot">йогурт</span><br>Греческий + ягоды</td>
+        <td class="dish"><span class="slot">мясо</span><br>Куриные котлеты</td>
+        <td class="kcal">1640</td>
+      </tr>
+      <tr>
+        <td><span class="day">Вт</span><span class="kcal">9 сен</span></td>
+        <td class="dish"><span class="slot">яйца</span><br>Омлет со шпинатом</td>
+        <td class="dish"><span class="slot">салат</span><br>Индейка, гречка</td>
+        <td class="dish"><span class="slot">кефир</span><br>Кефир 1% + груша</td>
+        <td class="dish"><span class="slot">мясо</span><br>Котлеты (повтор)</td>
+        <td class="kcal">1675</td>
+      </tr>
+      <tr>
+        <td><span class="day">Ср</span><span class="kcal">10 сен</span></td>
+        <td class="dish"><span class="slot">сырники</span><br>Запечённые</td>
+        <td class="dish"><span class="slot">суп</span><br>Куриный с кабачком</td>
+        <td class="dish"><span class="slot">творог</span><br>Зернёный 5%</td>
+        <td class="dish"><span class="slot">птица</span><br>Бедро в духовке</td>
+        <td class="kcal">1632</td>
+      </tr>
+      <tr>
+        <td><span class="day">Чт</span><span class="kcal">11 сен</span></td>
+        <td class="dish"><span class="slot">каша</span><br>Овсянка на молоке</td>
+        <td class="dish"><span class="slot">боул</span><br>Киноа, нут, овощи</td>
+        <td class="dish"><span class="slot">йогурт</span><br>Греческий + ягоды</td>
+        <td class="dish"><span class="slot">яйца</span><br>Фриттата с брокколи</td>
+        <td class="kcal">1668</td>
+      </tr>
+      <tr>
+        <td><span class="day">Пт</span><span class="kcal">12 сен</span></td>
+        <td class="dish"><span class="slot">тост</span><br>Цельнозерновой, яйцо</td>
+        <td class="dish"><span class="slot">суп</span><br>Чечевица (повтор)</td>
+        <td class="dish"><span class="slot">кефир</span><br>Кефир 1% + яблоко</td>
+        <td class="dish"><span class="slot">мясо</span><br>Индейка, цукини</td>
+        <td class="kcal">1610</td>
+      </tr>
+      <tr>
+        <td><span class="day">Сб</span><span class="kcal">13 сен</span></td>
+        <td class="dish"><span class="slot">сырники</span><br>Запечённые</td>
+        <td class="dish"><span class="slot">паста</span><br>Твёрдые сорта, индейка</td>
+        <td class="dish"><span class="slot">творог</span><br>Зернёный 5%</td>
+        <td class="dish"><span class="slot">птица</span><br>Курица, салат</td>
+        <td class="kcal">1690</td>
+      </tr>
+      <tr>
+        <td><span class="day">Вс</span><span class="kcal">14 сен</span></td>
+        <td class="dish"><span class="slot">каша</span><br>Пшено с тыквой</td>
+        <td class="dish"><span class="slot">борщ</span><br>На индейке, без зажарки</td>
+        <td class="dish"><span class="slot">йогурт</span><br>Греческий</td>
+        <td class="dish"><span class="slot">мясо</span><br>Котлеты + салат</td>
+        <td class="kcal">1648</td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="fine">Повтор котлет в понедельник, вторник и воскресенье — одна закладка фарша. Соус к котлетам считается отдельно, стр. 04.</p>
+  <div class="pg"><span>Анна · 8–14 сентября 2026</span><span>02</span></div>
+</section>
+
+<section class="sheet">
+  <div class="running"><span>Юлия Бояркова · нутрициолог</span><span>Понедельник · 8 сентября</span></div>
+  <p class="eyebrow">День 1 из 7</p>
+  <h2 style="font-size:22pt;margin-bottom:6px;color:#1f1b16;">Понедельник</h2>
+  <p style="color:var(--muted);margin:0 0 16px;">1640 ккал · Б 112 г · Ж 42 г · У 148 г · вода вне расчёта</p>
+  <div class="day-grid">
+    <article class="slot-card">
+      <div class="ph">завтрак</div>
+      <div>
+        <div class="who">08:00–10:00 · 15 мин</div>
+        <h3>Творожная рисовая каша</h3>
+        <div style="color:var(--muted);font-size:10pt;margin-top:4px;">Порция 250 г готового</div>
+      </div>
+      <div class="macros">
+        <div class="m"><b>310</b><span>ккал</span></div>
+        <div class="m"><b>24</b><span>белки</span></div>
+        <div class="m"><b>8</b><span>жиры</span></div>
+        <div class="m"><b>34</b><span>углеводы</span></div>
+      </div>
+    </article>
+    <article class="slot-card">
+      <div class="ph">обед</div>
+      <div>
+        <div class="who">13:00–15:00 · 40 мин</div>
+        <h3>Суп из красной чечевицы</h3>
+        <div style="color:var(--muted);font-size:10pt;margin-top:4px;">Порция 350 г + хлеб 30 г</div>
+      </div>
+      <div class="macros">
+        <div class="m"><b>420</b><span>ккал</span></div>
+        <div class="m"><b>22</b><span>белки</span></div>
+        <div class="m"><b>9</b><span>жиры</span></div>
+        <div class="m"><b>58</b><span>углеводы</span></div>
+      </div>
+    </article>
+    <article class="slot-card">
+      <div class="ph">перекус</div>
+      <div>
+        <div class="who">16:30 · без плиты</div>
+        <h3>Йогурт греческий, ягоды</h3>
+        <div style="color:var(--muted);font-size:10pt;margin-top:4px;">200 г йогурта + 80 г ягод</div>
+      </div>
+      <div class="macros">
+        <div class="m"><b>190</b><span>ккал</span></div>
+        <div class="m"><b>18</b><span>белки</span></div>
+        <div class="m"><b>5</b><span>жиры</span></div>
+        <div class="m"><b>16</b><span>углеводы</span></div>
+      </div>
+    </article>
+    <article class="slot-card">
+      <div class="ph">ужин</div>
+      <div>
+        <div class="who">19:00 · 25 мин + соус</div>
+        <h3>Куриные котлеты с рисом и творогом</h3>
+        <div style="color:var(--muted);font-size:10pt;margin-top:4px;">2 шт ~150 г котлет + гарнир + соус</div>
+      </div>
+      <div class="macros">
+        <div class="m"><b>720</b><span>ккал</span></div>
+        <div class="m"><b>48</b><span>белки</span></div>
+        <div class="m"><b>20</b><span>жиры</span></div>
+        <div class="m"><b>40</b><span>углеводы</span></div>
+      </div>
+    </article>
+  </div>
+  <div class="note">
+    <strong>Заметка Юлии.</strong> Котлеты — закладка на три ужина. Сегодня сформируйте и запеките всю партию, остаток уберите в контейнеры. Соус — отдельная карточка, КБЖУ не входит в 129 ккал/100 г котлет.
+  </div>
+  <div class="pg"><span>Анна · 8–14 сентября 2026</span><span>03</span></div>
+</section>
+
+<section class="sheet">
+  <div class="running"><span>Юлия Бояркова · нутрициолог</span><span>Рецепт</span></div>
+  <div class="recipe-head">
+    <div>
+      <p class="eyebrow">Ужин · запекание · партия на 3 дня</p>
+      <h2 style="font-size:24pt;color:#1f1b16;margin-bottom:8px;">Куриные котлеты<br>с рисом и творогом</h2>
+      <p style="color:var(--muted);margin:0;">Сочные за счёт творога и лука, без жарки в масле. Панировка учтена как удерживаемые 20 г муки на 1 кг фарша, не как вся мука с доски.</p>
+    </div>
+    <div class="photo">фото блюда · 16:9</div>
+  </div>
+  <p style="font-size:8pt;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);margin:0 0 8px;">КБЖУ на 100 г готового · усушка партии 20% · выход ~1300 г из 1630 г сырого</p>
+  <div class="kbju-row">
+    <div class="kbju"><span>ккал</span><b>129</b></div>
+    <div class="kbju"><span>белки</span><b>20,9</b></div>
+    <div class="kbju"><span>жиры</span><b>2,0</b></div>
+    <div class="kbju"><span>углеводы</span><b>6,9</b></div>
+  </div>
+  <p style="font-size:9pt;color:var(--muted);margin:-6px 0 16px;">Сырая масса на 100 г: 103 ккал · Б 16,7 · Ж 1,6 · У 5,5 — для сверки, клиенту ориентир готовое.</p>
+  <div class="two">
+    <div>
+      <h3 style="font-size:14pt;margin-bottom:8px;">Ингредиенты на партию</h3>
+      <ul class="ing">
+        <li><span>Филе курицы, фарш</span><span>1000 г</span></li>
+        <li><span>Лук, в фарш</span><span>200 г</span></li>
+        <li><span>Рис варёный</span><span>200 г</span></li>
+        <li><span>Творог зернёный 5–9%</span><span>200 г</span></li>
+        <li><span>Чеснок</span><span>10 г</span></li>
+        <li><span>Соль / перец</span><span>10 / 5 г</span></li>
+        <li><span>Мука на котлетах, удержано</span><span>20 г</span></li>
+      </ul>
+    </div>
+    <div>
+      <h3 style="font-size:14pt;margin-bottom:8px;">Шаги</h3>
+      <ol class="steps">
+        <li>Смешайте фарш, лук, остывший варёный рис, творог, чеснок, соль и перец. Не выбивайте долго — котлеты будут плотными.</li>
+        <li>Сформируйте одинаковые заготовки. Слегка обваляйте: в расчёт идёт только мука, которая осталась на поверхности.</li>
+        <li>Запеките на пергаменте при 180 °C до готовности, 20–25 мин. Не жарьте в масле — жир в КБЖУ не заложен.</li>
+        <li>Остудите 5 минут. Две штуки — ужин, остальное в контейнеры на вторник и воскресенье.</li>
+      </ol>
+    </div>
+  </div>
+  <div class="note">
+    <strong>Зачем это в рационе.</strong> Высокий белок на 100 г готового (~21 г) хорошо держит сытость. Рис и творог дают сочность без лишнего жира. Сметано-томатный соус — на следующей странице, считайте его отдельно, если наливаете в тарелку.
+  </div>
+  <div class="pg"><span>Эталон расчёта из рабочего чата · движок должен повторять эти цифры</span><span>04</span></div>
+</section>
+
+<section class="sheet">
+  <div class="running"><span>Юлия Бояркова · нутрициолог</span><span>Соус · закупки · рамка</span></div>
+  <p class="eyebrow">К котлетам, отдельно</p>
+  <h2 style="font-size:20pt;color:#1f1b16;margin-bottom:8px;">Сметано-томатный соус с зеленью</h2>
+  <p style="color:var(--muted);margin:0 0 12px;">Лёгкий, без масла. Можно запекать последние 10 минут под котлетами или подать как подливку. КБЖУ не смешивается с котлетами.</p>
+  <div class="kbju-row">
+    <div class="kbju"><span>ккал / 100 г</span><b>62</b></div>
+    <div class="kbju"><span>белки</span><b>2,4</b></div>
+    <div class="kbju"><span>жиры</span><b>3,1</b></div>
+    <div class="kbju"><span>углеводы</span><b>5,8</b></div>
+  </div>
+  <p class="fine" style="margin-top:-4px;">Цифры соуса на эталоне — иллюстрация вёрстки. В продукте считаются тем же движком, что котлеты.</p>
+
+  <h3 style="font-size:16pt;margin:22px 0 8px;color:#1f1b16;">Закупки на неделю</h3>
+  <div class="shop">
+    <div>
+      <h3>Мясо и птица</h3>
+      <ul>
+        <li><span>Филе курицы</span><span>1,5 кг</span></li>
+        <li><span>Индейка, фарш / бедро</span><span>900 г</span></li>
+      </ul>
+      <h3>Молочное</h3>
+      <ul>
+        <li><span>Творог зернёный 5–9%</span><span>800 г</span></li>
+        <li><span>Йогурт греческий 2%</span><span>800 г</span></li>
+        <li><span>Кефир 1%</span><span>1 л</span></li>
+        <li><span>Сметана 10%</span><span>200 г</span></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Овощи и зелень</h3>
+      <ul>
+        <li><span>Лук репчатый</span><span>600 г</span></li>
+        <li><span>Кабачок, брокколи, шпинат</span><span>по сезону</span></li>
+        <li><span>Томаты в с.с. / паста</span><span>200 г</span></li>
+      </ul>
+      <h3>Бакалея</h3>
+      <ul>
+        <li><span>Рис, гречка, чечевица, овсянка</span><span>по 400 г</span></li>
+        <li><span>Мука (панировка)</span><span>50 г</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="note" style="margin-top:22px;">
+    <strong>Важно.</strong> Это меню — образовательный рацион нутрициолога, не назначение врача и не лабораторный анализ блюда. Цифры КБЖУ справочные, по таблицам состава и правилам выхода. При заболеваниях, беременности и приёме лекарств решение о питании согласовывается с лечащим врачом.
+  </div>
+  <div class="pg"><span>Не является медицинской услугой</span><span>05</span></div>
+</section>
+
+</body>
+</html>
