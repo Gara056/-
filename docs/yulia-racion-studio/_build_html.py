@@ -110,7 +110,7 @@ li {{ margin: 3px 0; }}
 </style>
 </head>
 <body>
-<p class="banner">Техническое задание · v0.9 · 7 сентября 2026</p>
+<p class="banner">Техническое задание · v0.9.1 · 8 сентября 2026</p>
 {body}
 </body>
 </html>
