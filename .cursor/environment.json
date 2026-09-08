@@ -1,0 +1,4 @@
+{
+  "name": "OpenClaw backup scripts",
+  "install": "bash .cursor/install.sh"
+}
