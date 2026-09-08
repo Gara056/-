@@ -6,6 +6,8 @@
 |---|---|
 | [TZ-racion-studio.md](TZ-racion-studio.md) | ТЗ v0.9.1: вопросы, as-is по DeepSeek, движок КБЖУ, PDF, монетизация |
 | [vybor-llm.md](vybor-llm.md) | Какой ИИ подключать: Cursor не в прод, DeepSeek + YandexGPT |
+| [biznes-plan.md](biznes-plan.md) | Как реализовать, бюджет А/стартап, что сколько стоит |
+| [biznes-plan.html](biznes-plan.html) / [biznes-plan.pdf](biznes-plan.pdf) | То же для чтения и печати |
 | [TZ-racion-studio.html](TZ-racion-studio.html) | То же, для чтения в браузере |
 | [TZ-racion-studio.pdf](TZ-racion-studio.pdf) | Печатная версия ТЗ |
 | [preview-menu.html](preview-menu.html) | Визуальный эталон клиентского PDF |

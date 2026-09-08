@@ -2,7 +2,7 @@
 
 ## Меню и КБЖУ для нутрициолога Юлии
 
-Пакет ТЗ и визуальный эталон PDF:
+Пакет ТЗ, выбор ИИ и бизнес-план:
 
 - [`docs/yulia-racion-studio/README.md`](docs/yulia-racion-studio/README.md)
 - ТЗ: [`docs/yulia-racion-studio/TZ-racion-studio.md`](docs/yulia-racion-studio/TZ-racion-studio.md)

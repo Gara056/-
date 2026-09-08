@@ -15,6 +15,7 @@
 - скриншоты текущего процесса в DeepSeek: `docs/yulia-racion-studio/as-is/`
 - визуальный эталон PDF-меню: `docs/yulia-racion-studio/preview-menu.html`
 - какой ИИ подключать: `docs/yulia-racion-studio/vybor-llm.md`
+- бизнес-план и бюджет: `docs/yulia-racion-studio/biznes-plan.md`
 
 ---
 
@@ -672,6 +673,7 @@ MVP принят, если:
 |---|---|
 | `TZ-racion-studio.md` | это ТЗ |
 | `vybor-llm.md` | какой ИИ подключать: Cursor нельзя в прод, DeepSeek + YandexGPT |
+| `biznes-plan.md` | как реализовать, бюджет контуров А/Б/В |
 | `TZ-racion-studio.html` | удобное чтение / печать |
 | `preview-menu.html` | визуальный эталон PDF |
 | `as-is/*.jpg` | исходный процесс в DeepSeek |
